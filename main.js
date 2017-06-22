@@ -43,6 +43,7 @@ app.get("/", function (req , res) {
 });
 
 app.get("/login", function (req, res) {
+  console.log(users);
   res.render("login");
 });
 app.get("/signup", function (req, res) {
@@ -86,7 +87,15 @@ app.post("/logout", function (req, res) {
   res.redirect("/login");
 
 });
-
+app.post("/signup", function (req,res) {
+  let new_user = {
+    username:req.body.new_username,
+    password:req.body.new_password
+  };
+  users.push(new_user);
+  // console.log(users);
+  res.redirect("/")
+});
 
 app.listen(3000, function () {
   console.log("whats up mane");
